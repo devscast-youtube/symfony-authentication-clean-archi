@@ -32,7 +32,7 @@ services:
         exclude:
             - '../src/**/Infrastructure/Framework/Symfony/DependencyInjection/*'
             - '../src/**/Domain/Model/Entity/*'
-            - '../src/**/Domain/Model/ValueObjet/*'
+            - '../src/**/Domain/Model/ValueObject/*'
             - '../src/SharedContext/Infrastructure/Framework/Symfony/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
