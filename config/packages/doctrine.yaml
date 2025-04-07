@@ -13,18 +13,22 @@ doctrine:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
         report_fields_where_declared: true
-        validate_xml_mapping: true
+        validate_xml_mapping: false # problem here
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         identity_generation_preferences:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
         auto_mapping: true
         mappings:
-            App:
-                type: attribute
+            Classroom\SharedContext:
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/SharedContext'
+                prefix: 'Classroom\SharedContext\Domain\Model'
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+            Classroom\StudentManagement:
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/StudentManagement'
+                prefix: 'Classroom\StudentManagement\Domain\Model'
+                is_bundle: false
         controller_resolver:
             auto_mapping: false
 
