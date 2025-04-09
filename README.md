@@ -8,7 +8,7 @@ Chaque sujet est accompagné d’une vidéo explicative pour approfondir la comp
 - **Data Transfer Objects (DTOs)** : [Voir la vidéo](https://youtu.be/AlgdK2_NCzY)  
 - **Command Pattern** : [Voir la vidéo](https://youtu.be/LHRnCdDDhjs)  
 - **Command Query Responsibility Segregation (CQRS)** : [Voir la vidéo](https://youtu.be/LHRnCdDDhjs)  
-- **Clean Architecture** : *(prochaine vidéo !)*  
+- **Clean Architecture** : [Voir la vidéo](https://youtu.be/OIa_MdezuFQ)  
 
 💡 **Objectif** : Adopter des concepts robustes pour rendre vos applications Symfony plus évolutives et testables.
 
