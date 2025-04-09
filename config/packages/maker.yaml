@@ -1,0 +1,5 @@
+when@dev: &maker_dev
+  maker:
+    root_namespace: Classroom
+
+when@test: *maker_dev

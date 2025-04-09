@@ -8,6 +8,7 @@
 /var/
 /vendor/
 .idea
+.deptrac.cache
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

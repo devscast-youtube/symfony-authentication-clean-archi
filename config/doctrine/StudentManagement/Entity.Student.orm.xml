@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity
+            name="Classroom\StudentManagement\Domain\Model\Entity\Student"
+            repository-class="Classroom\StudentManagement\Infrastructure\Persistence\Doctrine\ORM\StudentOrmRepository"
+            table="student"
+    >
+        <id name="id">
+            <generator strategy="AUTO" />
+        </id>
+
+        <embedded name="email" class="Classroom\SharedContext\Domain\Model\ValueObject\Email" />
+        <embedded name="username" class="Classroom\StudentManagement\Domain\Model\ValueObject\Username" />
+        <embedded name="address" class="Classroom\StudentManagement\Domain\Model\ValueObject\Address" use-column-prefix="false" />
+
+        <field name="birthdate" type="datetime_immutable"/>
+    </entity>
+</doctrine-mapping>
