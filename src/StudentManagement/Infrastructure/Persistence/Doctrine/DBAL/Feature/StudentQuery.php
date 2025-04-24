@@ -6,6 +6,7 @@ namespace Classroom\StudentManagement\Infrastructure\Persistence\Doctrine\DBAL\F
 
 use Classroom\SharedContext\Domain\Model\ValueObject\Email;
 use Classroom\StudentManagement\Application\ReadModel\StudentProfile;
+use Classroom\StudentManagement\Domain\Model\Entity\Identity\StudentId;
 use Classroom\StudentManagement\Domain\Model\ValueObject\Age;
 use Classroom\StudentManagement\Domain\Model\ValueObject\Username;
 use Doctrine\DBAL\Query\QueryBuilder;
@@ -16,14 +17,14 @@ trait StudentQuery
     {
         return $qb = $this->connection->createQueryBuilder()
             ->from('student', 's')
-            ->select('s.id, s.birthdate, s.email_value as email, s.username_value as username')
+            ->select('s.id, s.birthdate, s.email, s.username_value as username')
             ->addSelect('s.city as address_city, s.country as address_country, s.address_line1, s.address_line2');
     }
 
     private function mapStudentProfile(array $data): StudentProfile
     {
         return new StudentProfile(
-            $data['id'],
+            StudentId::fromBinary($data['id']),
             new Username($data['username']),
             new Email($data['email']),
             $this->addressFactory->create(

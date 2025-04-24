@@ -3,12 +3,13 @@
 namespace Classroom\StudentManagement\Domain\Model\Entity;
 
 use Classroom\SharedContext\Domain\Model\ValueObject\Email;
+use Classroom\StudentManagement\Domain\Model\Entity\Identity\StudentId;
 use Classroom\StudentManagement\Domain\Model\ValueObject\Address;
 use Classroom\StudentManagement\Domain\Model\ValueObject\Username;
 
 class Student
 {
-    private(set) ?int $id = null;
+    private(set) StudentId $id;
 
     public function __construct(
         private(set) Email $email,
@@ -16,6 +17,7 @@ class Student
         private(set) Address $address,
         private(set) \DateTimeImmutable $birthdate,
     ) {
+        $this->id = new StudentId();
     }
 
     public function updateProfile(

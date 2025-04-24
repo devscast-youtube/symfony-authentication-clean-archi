@@ -34,7 +34,7 @@ final readonly class GetStudentProfileDbalHandler implements GetStudentProfileHa
     {
         $qb = $this->createBaseQuery()
             ->andWhere('s.id = :id')
-            ->setParameter('id', $query->studentId)
+            ->setParameter('id', $query->studentId->toBinary())
             ->enableResultCache(new QueryCacheProfile(0, StudentCacheKeys::PROFILE->withId($query->studentId)))
         ;
 

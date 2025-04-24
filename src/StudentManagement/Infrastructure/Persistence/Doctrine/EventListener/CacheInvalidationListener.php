@@ -39,7 +39,7 @@ final readonly class CacheInvalidationListener
     {
         $entity = $event->getObject();
 
-        if ($entity instanceof Student && $entity->id !== null) {
+        if ($entity instanceof Student) {
             $this->resultCache?->deleteItems([
                 StudentCacheKeys::PROFILE->withId($entity->id),
                 StudentCacheKeys::LIST->value,

@@ -1,0 +1,28 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Classroom\IdentityAndAccess\Presentation\Web\Controller;
+
+use Classroom\IdentityAndAccess\Application\UseCase\Command\UnlockAccount;
+use Classroom\IdentityAndAccess\Domain\Model\ValueObject\Secret\GeneratedToken;
+use Classroom\SharedContext\Presentation\Web\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Attribute\Route;
+
+/**
+ * Class UnlockAccountController.
+ *
+ * @author bernard-ng <bernard@devscast.tech>
+ */
+#[Route('/api/account/unlock/{token}', name: 'identity_and_access_unlock_account', methods: ['GET'])]
+final class UnlockAccountController extends AbstractController
+{
+    public function __invoke(string $token): JsonResponse
+    {
+        $token = new GeneratedToken($token);
+        $this->handleCommand(new UnlockAccount($token));
+
+        return new JsonResponse(status: 200);
+    }
+}

@@ -8,11 +8,11 @@
             repository-class="Classroom\StudentManagement\Infrastructure\Persistence\Doctrine\ORM\StudentOrmRepository"
             table="student"
     >
-        <id name="id">
-            <generator strategy="AUTO" />
+        <id name="id" type="student_id">
+            <generator strategy="NONE" />
         </id>
 
-        <embedded name="email" class="Classroom\SharedContext\Domain\Model\ValueObject\Email" />
+        <field name="email" type="email" />
         <embedded name="username" class="Classroom\StudentManagement\Domain\Model\ValueObject\Username" />
         <embedded name="address" class="Classroom\StudentManagement\Domain\Model\ValueObject\Address" use-column-prefix="false" />
 

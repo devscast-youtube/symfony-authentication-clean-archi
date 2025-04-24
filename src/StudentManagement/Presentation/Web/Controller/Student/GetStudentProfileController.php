@@ -6,16 +6,17 @@ use Classroom\SharedContext\Presentation\Web\Controller\AbstractController;
 use Classroom\StudentManagement\Application\ReadModel\StudentProfile;
 use Classroom\StudentManagement\Application\UseCase\Query\GetStudentProfile;
 use Classroom\StudentManagement\Domain\Exception\StudentNotFound;
+use Classroom\StudentManagement\Domain\Model\Entity\Identity\StudentId;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 
 #[Route('/student/{id}', name: 'app_student_show', requirements: [
-    'id' => Requirement::DIGITS,
+    'id' => Requirement::UUID,
 ], methods: ['GET'])]
 final class GetStudentProfileController extends AbstractController
 {
-    public function __invoke(int $id): Response
+    public function __invoke(StudentId $id): Response
     {
         try {
             /** @var StudentProfile $student */

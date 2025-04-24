@@ -10,6 +10,8 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $projectDir: '%kernel.project_dir%'
 
     _instanceof:
         Classroom\SharedContext\Application\Messaging\CommandHandler:
@@ -27,6 +29,9 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
+    DataFixtures\:
+        resource: '../fixtures'
+
     Classroom\:
         resource: '../src/'
         exclude:
