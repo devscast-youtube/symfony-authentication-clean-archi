@@ -22,9 +22,9 @@ jobs:
           uses: actions/cache@v4
           with:
             path: ${{ env.COMPOSER_CACHE_DIR }}
-            key: php8.3-composer-${{ hashFiles('**/composer.json') }}
+            key: php8.4-composer-${{ hashFiles('**/composer.json') }}
             restore-keys: |
-              php8.3-composer-latest-
+              php8.4-composer-latest-
       -   name: Update composer
           run: composer self-update
 
