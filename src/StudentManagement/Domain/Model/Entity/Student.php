@@ -9,7 +9,9 @@ use Classroom\StudentManagement\Domain\Model\ValueObject\Username;
 
 class Student
 {
-    private(set) StudentId $id;
+    private(set)
+
+ public StudentId $id;
 
     public function __construct(
         private(set) Email $email,

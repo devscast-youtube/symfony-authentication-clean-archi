@@ -5,6 +5,7 @@ namespace Classroom\StudentManagement\Presentation\Web\Controller\Student;
 use Classroom\SharedContext\Presentation\Web\Controller\AbstractController;
 use Classroom\StudentManagement\Application\UseCase\Command\UpdateStudentProfile;
 use Classroom\StudentManagement\Domain\Exception\StudentNotFound;
+use Classroom\StudentManagement\Domain\Model\Entity\Identity\StudentId;
 use Classroom\StudentManagement\Domain\Model\Repository\StudentRepository;
 use Classroom\StudentManagement\Presentation\Web\Form\StudentType;
 use Classroom\StudentManagement\Presentation\WriteModel\StudentModel;
@@ -12,8 +13,11 @@ use DomainException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 
-#[Route('/student/{id}/edit', name: 'app_student_edit', methods: ['GET', 'POST'])]
+#[Route('/student/{id}/edit', name: 'app_student_edit', requirements: [
+    'id' => Requirement::UUID,
+], methods: ['GET', 'POST'])]
 final class UpdateStudentProfileController extends AbstractController
 {
     public function __construct(
@@ -21,7 +25,7 @@ final class UpdateStudentProfileController extends AbstractController
     ) {
     }
 
-    public function __invoke(Request $request, int $id): Response
+    public function __invoke(Request $request, StudentId $id): Response
     {
         try {
             $student = $this->studentRepository->getById($id);

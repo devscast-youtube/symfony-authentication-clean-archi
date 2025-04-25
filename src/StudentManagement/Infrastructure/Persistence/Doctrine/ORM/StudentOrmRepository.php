@@ -35,7 +35,7 @@ class StudentOrmRepository extends ServiceEntityRepository implements StudentRep
     public function getById(StudentId $studentId): Student
     {
         $student = $this->findOneBy([
-            'id' => $studentId
+            'id' => $studentId,
         ]);
 
         if ($student === null) {

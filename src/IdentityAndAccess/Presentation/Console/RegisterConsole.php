@@ -83,7 +83,7 @@ final class RegisterConsole extends Command
         /** @var bool $admin */
         $admin = $input->getOption('admin');
 
-        $command = new Register($name, Email::from($email), $password, $admin ? Roles::admin() : Roles::user());
+        $command = new Register($name, new Email($email), $password, $admin ? Roles::admin() : Roles::user());
         $this->commandBus->handle($command);
         $this->io->success(\sprintf('%s was created: %s', $admin ? 'ADMIN' : 'USER', $email));
 

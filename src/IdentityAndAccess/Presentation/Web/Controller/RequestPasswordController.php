@@ -22,7 +22,7 @@ final class RequestPasswordController extends AbstractController
 {
     public function __invoke(#[MapRequestPayload] RequestPasswordModel $model): JsonResponse
     {
-        $email = Email::from($model->email);
+        $email = new Email($model->email);
         $this->handleCommand(new RequestPassword($email));
 
         return new JsonResponse(status: 200);

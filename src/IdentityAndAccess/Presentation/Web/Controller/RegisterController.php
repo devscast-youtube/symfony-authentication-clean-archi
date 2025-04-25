@@ -24,7 +24,7 @@ final class RegisterController extends AbstractController
     {
         $this->handleCommand(new Register(
             $model->name,
-            Email::from($model->email),
+            new Email($model->email),
             $model->password
         ));
 
