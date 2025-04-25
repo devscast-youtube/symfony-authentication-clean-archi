@@ -1,0 +1,18 @@
+meta {
+  name: login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/login_check
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "admin@admin.com",
+    "password": "000000"
+  }
+}

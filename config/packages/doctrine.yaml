@@ -9,6 +9,13 @@ doctrine:
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
         result_cache: 'cache.dbal'
+        types:
+            email: Classroom\SharedContext\Infrastructure\Persistence\Doctrine\DBAL\Types\EmailType
+            student_id: Classroom\StudentManagement\Infrastructure\Persistence\Doctrine\DBAL\Types\StudentIdType
+            user_id: Classroom\IdentityAndAccess\Infrastructure\Persistence\Doctrine\DBAL\Types\UserIdType
+            login_attempt_id: Classroom\IdentityAndAccess\Infrastructure\Persistence\Doctrine\DBAL\Types\LoginAttemptIdType
+            login_history_id: Classroom\IdentityAndAccess\Infrastructure\Persistence\Doctrine\DBAL\Types\LoginHistoryIdType
+            verification_token_id: Classroom\IdentityAndAccess\Infrastructure\Persistence\Doctrine\DBAL\Types\VerificationTokenIdType
     orm:
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
@@ -28,6 +35,11 @@ doctrine:
                 type: xml
                 dir: '%kernel.project_dir%/config/doctrine/StudentManagement'
                 prefix: 'Classroom\StudentManagement\Domain\Model'
+                is_bundle: false
+            Classroom\IdentityAndAccess:
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/IdentityAndAccess'
+                prefix: 'Classroom\IdentityAndAccess\Domain\Model'
                 is_bundle: false
         controller_resolver:
             auto_mapping: false

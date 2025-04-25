@@ -21,8 +21,7 @@ final class StudentModel
         public ?Email $email = null,
         public ?Username $username = null,
         public Address $address = new Address(),
-        #[Assert\LessThan('today')]
-        public ?\DateTimeImmutable $birthdate = null
+        #[Assert\LessThan('today')] public ?\DateTimeImmutable $birthdate = null
     ) {
     }
 

@@ -11,6 +11,10 @@
         "doctrine/doctrine-bundle": "^2.13.2",
         "doctrine/doctrine-migrations-bundle": "^3.4.1",
         "doctrine/orm": "^3.3.2",
+        "geoip2/geoip2": "*",
+        "gesdinet/jwt-refresh-token-bundle": "*",
+        "lexik/jwt-authentication-bundle": "*",
+        "matomo/device-detector": "*",
         "phpdocumentor/reflection-docblock": "^5.6.1",
         "phpstan/phpdoc-parser": "^2.1",
         "symfony/asset": "7.2.*",
@@ -63,7 +67,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Classroom\\Tests\\": "tests/"
+            "Classroom\\Tests\\": "tests/",
+            "DataFixtures\\": "fixtures/"
         }
     },
     "replace": {
@@ -87,6 +92,25 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "app:cs": [
+            "./vendor/bin/ecs check",
+            "bin/console lint:yaml config --parse-tags",
+            "bin/console lint:container",
+            "./vendor/bin/phpstan analyse --memory-limit=-1 --configuration=phpstan.neon",
+            "./vendor/bin/rector --dry-run"
+        ],
+        "app:tests": [
+            "APP_ENV=test ./vendor/bin/phpunit"
+        ],
+        "app:behat": [
+            "APP_ENV=test bin/console doctrine:database:create",
+            "APP_ENV=test bin/console doctrine:migration:migrate --no-interaction --allow-no-migration",
+            "APP_ENV=test ./vendor/bin/behat --format=progress --no-interaction"
+        ],
+        "app:env": [
+            "APP_RUNTIME_ENV=prod bin/console secrets:decrypt-to-local --force",
+            "bin/console dotenv:dump prod"
         ]
     },
     "conflict": {
@@ -100,6 +124,8 @@
     },
     "require-dev": {
         "deptrac/deptrac": "^3.0",
+        "doctrine/doctrine-fixtures-bundle": "^4.1",
+        "fakerphp/faker": "^1.24",
         "phpstan/phpstan": "*",
         "phpunit/phpunit": "^9.6.22",
         "rector/rector": "*",
